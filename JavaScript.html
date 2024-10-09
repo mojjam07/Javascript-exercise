@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Exercises</title>
+  </head>
+  <body>
+    <button onclick="{handleClick}">Click</button>
+
+    <script>
+      // ## Function Declarartion in JS: 1. function keyword & 2. Arrow (=>) function expression
+      const add5 = (myNumber) => {
+        return myNumber + 5;
+      };
+
+      console.log(add5(10));
+      console.log([10, 17, 23].map(add5));
+      // Alternatively
+      console.log([10, 17, 23].map((myNumber) => myNumber + 5));
+
+      // ## Variable Declarations in JS: let & const keywords
+      let myVariable = 10;
+      const myConstant = 10;
+
+      myVariable = 15;
+      // myConstant = 15; // This will flag error
+
+      console.log(myVariable);
+      console.log(myConstant);
+
+      // ## Class Declaration in JS
+
+      class Cat {
+        constructor(name) {
+          this.name = name;
+        }
+      }
+      const myCat = new Cat("nani");
+      console.log(myCat);
+      console.log(`My cat name is ${myCat.name}`);
+
+      // Destructuring in JS;
+
+      // 1. Objects
+      const myObject = {
+        name: "Jamiu",
+        age: 28,
+      };
+      const { name, age } = myObject;
+      console.log(`I am ${name}, I am ${age} years old`);
+
+      // 2. Arrays
+      const myArray = ["Jamiu", "Mojeed", "Adekunle"];
+      const [lastName, firstName, otherName] = myArray;
+      console.log(`I am ${lastName} ${firstName} ${otherName}`);
+
+      // 3. Function Arguments
+      const funcObject = {
+        name: "Jamiu",
+        age: 25,
+      };
+      function funcArgs({ name, age }) {
+        return `${name} is ${age}`;
+      }
+      console.log(funcArgs(funcObject));
+
+      // 4. Advanced Destructuring
+      const people = {
+        name: "Jamiu",
+        age: 29,
+        hairColor: undefined,
+        eyeColor: "brown",
+        location: {
+          city: "Mafoluku-Oshodi",
+        },
+      };
+      const {
+        name: myName,
+        hairColor = "black",
+        location: { city },
+        ...otherProperties
+      } = people;
+      console.log(myName, hairColor, city, otherProperties);
+
+      // Spread Operator
+      const myArray1 = [3, 4, 5];
+      const myArray2 = [1, 2, ...myArray1, 6, 7];
+      console.log(myArray2);
+
+      const myObject1 = { name: "Jamiu", hairColor: "brown" };
+      const myObject2 = { ...myObject1, age: 28 };
+      console.log(myObject2);
+
+      // Async & Await
+      const fetchData = async () => {
+        const response = await fetch("https://randomuser.me/api/");
+        const data = await response.json();
+        return data;
+      };
+      const printData = async () => {
+        try {
+          const data = await fetchData();
+          console.log("Data", data);
+          // "Data" > {results: Array(1), info: Object}
+        } catch (error) {
+          console.error("Problem", error);
+        }
+      };
+      printData();
+
+      // Events
+      (handleClick) => console.log("Button Clicked");
+    </script>
+  </body>
+</html>
